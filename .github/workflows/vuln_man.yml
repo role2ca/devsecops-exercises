@@ -83,7 +83,7 @@ jobs:
            --spec-version="1.5"
            --project-name="${{ project }}"
            --project-version="build-${{ github.run_number }}"
-           -o "${{ project }}-docker_sbom.json"
+           -o "${{ project }}-docker_bom.json"
            image:tag
 
        - name: upload Artifacts
