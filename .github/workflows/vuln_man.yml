@@ -42,7 +42,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: sbom-${{matrix.project}}
+          name: sbom-${{ matrix.project }}
           path: "vuln_apps/${{ matrix.project }}/${{ matrix.project }}_bom.json"
           retention-days: 5
           if-no-files-found: error
@@ -79,7 +79,7 @@ jobs:
           cdxgen
           --type docker
           --format json
-          --spec-version="${{matrix.cdx_spec_version}}"
+          --spec-version="${{ matrix.cdx_spec_version }}"
           --project-name="${{ matrix.project }}"
           --project-version="build-${{ github.run_number }}"
           -o "${{ matrix.project }}-docker_bom.json"
