@@ -3,7 +3,6 @@ name: SBOM/VEX generation
 on:
   workflow_dispatch:
 
-
 jobs:
   sbom-vex-scan:
     name: SBOM/VEX Generation
@@ -16,6 +15,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v5
+
+      - name: Install Node dependencies
+        run: |
+          cd vuln_apps/${{ matrix.project }}
+          if [ -f package.json ]; then
+            echo "Running npm install in $(pwd)"
+            npm install
+          else
+            echo "No package.json found, skipping npm install"
+          fi
 
       - name: Generate VEXs (Human)
         uses: aquasecurity/trivy-action@0.33.1
